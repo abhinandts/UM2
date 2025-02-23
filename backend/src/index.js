@@ -1,7 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 import AuthRouter from './routes/authRoutes.js'
+import ProtectedRouter from './routes/protectedRoutes.js'
 
 dotenv.config();
 
@@ -11,9 +13,11 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', AuthRouter);
+app.use('/protected',ProtectedRouter);
 
 const connectDB = async () => {
     try {

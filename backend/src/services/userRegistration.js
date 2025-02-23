@@ -1,7 +1,7 @@
 import User from '../schemas/userSchema.js';
 import bcrypt from 'bcrypt';
 
-export const registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
 
     try {
         const { name, email, password } = req.body;
@@ -26,5 +26,6 @@ export const registerUser = async (req, res) => {
         console.log(error)
         res.status(500).json({ message: "Server error during registration" });
     }
-
 }
+
+export default registerUser;
