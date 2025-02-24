@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+
 import AuthRouter from './routes/authRoutes.js'
 import ProtectedRouter from './routes/protectedRoutes.js'
 
@@ -9,15 +11,23 @@ dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI;
+app.use(cookieParser());
 
 app.use(express.json());
-app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use('/auth', AuthRouter);
-app.use('/protected',ProtectedRouter);
+app.use('/protected', ProtectedRouter);
+
+const PORT = process.env.PORT || 8000;
+const MONGO_URI = process.env.MONGO_URI;
 
 const connectDB = async () => {
     try {

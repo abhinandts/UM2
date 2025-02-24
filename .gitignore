@@ -1,2 +1,50 @@
+# ================================
+# General Logs
+# ================================
+logs
+*.log
+npm-debug.log*
+
+# ================================
+# Node Modules
+# ================================
+frontend/node_modules/
 backend/node_modules/
+
+# ================================
+# Build Output
+# ================================
+frontend/dist/
+backend/dist/
+
+# ================================
+# Environment Files
+# ================================
+frontend/.env
 backend/.env
+
+# ================================
+# IDE/Editor Files
+# ================================
+# Visual Studio Code
+.vscode/*
+!.vscode/extensions.json
+
+# Windows-specific files
+Thumbs.db
+
+# ================================
+# Frontend-Specific Files
+# ================================
+# Vite build cache
+frontend/.vite/
+
+# ESLint cache
+frontend/.eslintcache
+
+# ================================
+# Backend-Specific Files
+# ================================
+# Nodemon cache
+backend/nodemon.json
+
